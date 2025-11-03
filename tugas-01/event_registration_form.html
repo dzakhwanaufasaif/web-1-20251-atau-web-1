@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 550px;
+        }
+        h2 {
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 0.95em;
+        }
+        .form-section label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .input-field, .select-field {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 100%; /* Penting untuk flex item */
+        }
+        /* Penataan input satu kolom */
+        .full-width-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /* Penataan label untuk field satu kolom */
+        .single-field-group {
+            margin-bottom: 15px;
+        }
+        /* Grup Ukuran T-Shirt */
+        .tshirt-size-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .tshirt-size-item {
+            flex: 1;
+        }
+        .tshirt-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-item input[type="radio"],
+        .terms-agreement input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .terms-agreement {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* Biru terang seperti di gambar */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Event Registration Form</h2>
+    <p class="subtitle">Please fill out the form below to register for the event.</p>
+
+    <form action="/submit-event-registration" method="POST">
+        <div class="input-group">
+            <div style="flex: 1;">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" class="input-field" required>
+            </div>
+            <div style="flex: 1;">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Doe" class="input-field" required>
+            </div>
+        </div>
+
+        <div class="single-field-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john.doe@example.com" class="full-width-input" required>
+        </div>
+
+        <div class="single-field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" class="full-width-input">
+        </div>
+
+        <div class="input-group">
+            <div style="flex: 1;">
+                <label for="country">Country</label>
+                <select id="country" name="country" class="select-field" required>
+                    <option value="" disabled selected>Select Country</option>
+                    <option value="ID">Indonesia</option>
+                    <option value="US">United States</option>
+                    </select>
+            </div>
+            <div style="flex: 1;">
+                <label for="dob">Date of Birth</label>
+                <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" class="input-field" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" required>
+                </div>
+        </div>
+
+        <div class="form-section">
+            <label>T-Shirt Size</label>
+            <div class="tshirt-options">
+                <div class="checkbox-item">
+                    <input type="radio" id="sizeSmall" name="tshirtSize" value="S">
+                    <label for="sizeSmall">Small</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" id="sizeMedium" name="tshirtSize" value="M">
+                    <label for="sizeMedium">Medium</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" id="sizeLarge" name="tshirtSize" value="L">
+                    <label for="sizeLarge">Large</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" id="sizeExtraLarge" name="tshirtSize" value="XL">
+                    <label for="sizeExtraLarge">Extra Large</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label>Emergency Contact Information</label>
+            
+            <div class="single-field-group">
+                <label for="emergencyName">Emergency Contact Name</label>
+                <input type="text" id="emergencyName" name="emergencyName" placeholder="Jane Smith" class="full-width-input" required>
+            </div>
+
+            <div class="single-field-group">
+                <label for="emergencyPhone">Emergency Contact Phone Number</label>
+                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="+1 (555) 123-4567" class="full-width-input" required>
+            </div>
+        </div>
+
+        <div class="terms-agreement">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms and conditions of this event.</label>
+        </div>
+
+        <button type="submit">Register Now</button>
+    </form>
+</div>
+
+</body>
+</html>
